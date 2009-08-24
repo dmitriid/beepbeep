@@ -1,9 +1,11 @@
 %% @author Bob Ippolito <bob@mochimedia.com>
 %% @copyright 2007 Mochi Media, Inc.
 
-%% @doc Utilities for parsing multipart/form-data.
+%% @doc Utilities for parsing multipart/form-data. This is an exact copy of
+%%      MochiWeb's mochiweb_multipart
 
--module(mochiweb_multipart).
+-module(beepbeep_multipart).
+
 -author('bob@mochimedia.com').
 
 -export([parse_form/1, parse_form/2]).
