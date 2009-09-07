@@ -192,6 +192,9 @@ handle_response({render, View, Data, Options}) ->
 handle_response({text, Data}) ->
     {ok, 200, "text/plain", [], Data};
 
+handle_response({text, Data, Mimetype}) ->
+    {ok, 200, Mimetype, [], Data};
+
 %% This seems stupid...better way??
 handle_response({redirect, _Url} = Redirect) ->
     Redirect;
