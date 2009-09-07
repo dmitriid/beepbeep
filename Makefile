@@ -1,5 +1,6 @@
 all:
 	(cd src;$(MAKE))
+	(cd src/middleware;$(MAKE))
 	(cd deps/erlydtl/src;$(MAKE))
 	(cd deps/mochiweb/src;$(MAKE))
 	(cd deps/ewgi;$(MAKE))

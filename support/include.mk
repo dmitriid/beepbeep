@@ -6,7 +6,7 @@
 ERL := erl
 ERLC := $(ERL)c
 
-INCLUDE_DIRS := ../include $(wildcard ../deps/*/include)
+INCLUDE_DIRS := $(INCLUDE_DIRS) ../include $(wildcard ../deps/*/include)
 EBIN_DIRS := $(wildcard ../deps/*/ebin)
 ERLC_FLAGS := -W $(INCLUDE_DIRS:../%=-I ../%) $(EBIN_DIRS:%=-pa %)
 
@@ -18,7 +18,7 @@ ifdef debug
   ERLC_FLAGS += -Ddebug
 endif
 
-EBIN_DIR := ../ebin
+EBIN_DIR := $(EBIN_DIR)../ebin
 DOC_DIR  := ../doc
 EMULATOR := beam
 
