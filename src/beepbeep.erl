@@ -146,8 +146,8 @@ preprocess_request({render, _View, _Data, _Options} = Request, AppWebModule, Env
 	NewRequest = pre_render(Req, AppWebModule, Env, Controller),
 	handle_response(NewRequest);
 preprocess_request({text, _Data} = Request, AppWebModule, Env, Controller, ActionName, _Args) ->
-    Env1 = beepbeep_args:set_action(Env, ActionName),
-	NewRequest = pre_render(Request, AppWebModule, Env1, Controller),
+    %Env1 = beepbeep_args:set_action(Env, ActionName),
+	NewRequest = pre_render(Request, AppWebModule, Env, Controller),
 	handle_response(NewRequest);
 preprocess_request({static, _File} = Request, AppWebModule, Env, Controller, _ActionName, _Args) ->
     %Env1 = beepbeep_args:set_action(Env, ActionName),
