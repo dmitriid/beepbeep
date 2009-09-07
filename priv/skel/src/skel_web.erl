@@ -13,7 +13,11 @@ stop() ->
     mochiweb_http:stop(?MODULE).
 
 loop(Req) ->
-	Mod = ewgi_mochiweb:new(beepbeep:loop([beepbeep_session, beepbeep])),
+    Middleware = [beepbeep_session,
+		  uri_params_middleware,
+		  post_data_middleware,
+		  beepbeep],    
+    Mod = ewgi_mochiweb:new(beepbeep:loop(Middleware)),
     Mod:run(Req).
 
 %% If necessary, add these hooks:
