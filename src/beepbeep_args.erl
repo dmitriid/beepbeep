@@ -52,11 +52,6 @@ get_all_headers(Env) ->
                         Hdrs
                 end, [], Env).
 
-get_param(Key, Env) ->
-	get_param(Key, Env, "").
-get_param(Key, Env, Default) ->
-    Params = proplists:get_value("beepbeep.data", Env),
-    proplists:get_value(Key, Params, Default).
 
 get_session_id(Env) ->
     ewgi_api:find_data("beep.session_id", Env).

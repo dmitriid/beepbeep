@@ -11,11 +11,9 @@
 -export([run/2, get_param/2, get_param/3]).
 
 get_param(Key, Env) ->
-    error_logger:info_report({get_param, Key}),
     get_param(Key, Env, undefined).
 
 get_param(Key, Env, Default) ->
-    error_logger:info_report({get_param, Key, Default}),
     Params = ewgi_api:find_data("beepbeep.data", Env),
     case is_list(Params) of
 	true ->
@@ -29,14 +27,11 @@ get_param(Key, Env, Default) ->
 
 run(Ctx, App) ->
     QueryString = ewgi_api:query_string(Ctx),
-    error_logger:info_report({qs, QueryString}),
     Data = case is_list(QueryString) of
 	       true ->
 		   mochiweb_util:parse_qs(QueryString);
 	       false ->
 		   []
     end,
-    error_logger:info_report({storing, Data}),
     Ctx1 = ewgi_api:store_data("beepbeep.data", Data, Ctx),
-    error_logger:info_report({stored, "beepbeep.data", Data}),
     App(Ctx1).
