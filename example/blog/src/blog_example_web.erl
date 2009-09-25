@@ -18,5 +18,5 @@ stop() ->
     mochiweb_http:stop(?MODULE).
 
 loop(Req) ->
-	Mod = ewgi_mochiweb:new(beepbeep:loop([beepbeep_session, blog_example_parse_post, beepbeep])),
+	Mod = ewgi_mochiweb:new(beepbeep:loop([beepbeep_session, post_data_middleware, beepbeep])),
     Mod:run(Req).
