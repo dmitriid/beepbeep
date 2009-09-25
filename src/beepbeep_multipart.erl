@@ -106,7 +106,7 @@ split_header(Line) ->
     {Name, [$: | Value]} = lists:splitwith(fun (C) -> C =/= $: end,
                                            binary_to_list(Line)),
     {string:to_lower(string:strip(Name)),
-     mochiweb_util:parse_header(Value)}.
+     beepbeep_util:parse_header(Value)}.
 
 read_chunk(Req, Length) when Length > 0 ->
     case Length of
@@ -160,7 +160,7 @@ feed_mp(body, State=#mp{boundary=Prefix, buffer=Buffer, callback=Callback}) ->
     end.
 
 get_boundary(ContentType) ->
-    {"multipart/form-data", Opts} = mochiweb_util:parse_header(ContentType),
+    {"multipart/form-data", Opts} = beepbeep_util:parse_header(ContentType),
     case proplists:get_value("boundary", Opts) of
         S when is_list(S) ->
             S
@@ -314,7 +314,7 @@ test_parse2() ->
 test_parse_form() ->
     ContentType = "multipart/form-data; boundary=AaB03x",
     "AaB03x" = get_boundary(ContentType),
-    Content = mochiweb_util:join(
+    Content = beepbeep_util:join(
                 ["--AaB03x",
                  "Content-Disposition: form-data; name=\"submit-name\"",
                  "",
@@ -350,7 +350,7 @@ test_parse_form() ->
 test_parse() ->
     ContentType = "multipart/form-data; boundary=AaB03x",
     "AaB03x" = get_boundary(ContentType),
-    Content = mochiweb_util:join(
+    Content = beepbeep_util:join(
                 ["--AaB03x",
                  "Content-Disposition: form-data; name=\"submit-name\"",
                  "",
